@@ -12,7 +12,7 @@ void printintro() {
 int main() {
     string menu[] = { "일반 라면", "김치 라면", "치즈 라면", "떡 라면", "떡 만두 라면" };
     int price[] = { 3500, 4000, 4200, 4300, 4500 };
-    int total = 0; // 배열을 통해 메뉴판 출력
+    int total = 0;
 
     while (true) { // 무한 루프 시작
         cout << endl;
@@ -20,39 +20,34 @@ int main() {
         cout << endl;
         for (int i = 0; i < 5; ++i) {
             cout << i + 1 << ". " << menu[i] << " (" << price[i] << "원)" << endl;
-        } 
+        }
 
         cout << endl << "구매하실 라면 번호를 입력해주세요(종료는 0) : ";
-        int num; // 선택한 라면의 번호
-        cin >> num; 
+        int num;
+        cin >> num;
 
-        if (num == 0) { // 0을 입력하면 프로그램 종료 후 누적 가격 출력
+        if (num == 0) {// 0을 입력하면 프로그램 종료 후 누적 가격 출력
             cout << "총 가격은" << total << "원 입니다. ";
             break;
         } // if 함수 종료
 
-        if (num < 1 || num > 5) { // 1~5의 범위를 벗어난 숫자를 입력할 경우
+        if (num < 1 || num > 5) {
             cout << "제대로 된 숫자를 입력해 주세요." << endl;
             continue; // 잘못된 입력 처리 후 다시 메뉴 선택으로
         }
 
         cout << endl << menu[num - 1] << "을(를) 구입하시겠습니까? (Y/N): ";
-        char response; // Y 혹은 N
+        char response;
         cin >> response;
 
-        if (response == 'Y' || response == 'y') { // Y를 입력할 경우
+        if (response == 'Y' || response == 'y') {
             cout << "구매하실 라면 개수를 입력해주세요: ";
-            int nramen; // 구입한 라면의 수
+            int nramen;
             cin >> nramen;
 
-            if (nramen < 1 || nramen > 5) {
-                cout << "제대로 된 숫자를 입력해주세요." << endl;
-                continue; // 잘못된 입력 처리 후 다시 메뉴 선택으로
-            }
-
-            int currentprice = price[num - 1] * nramen; // price 배열에서 선택한 라면의 가격 x 주문한 라면 수
+            int currentprice = price[num - 1] * nramen;
             cout << endl;
-            cout << menu[num - 1] << "을(를) " << nramen << "개 구매하셨습니다." << endl; // menu 배열에서 선택한 라면 번호
+            cout << menu[num - 1] << "을(를) " << nramen << "개 구매하셨습니다." << endl;
             cout << "총 가격은 " << currentprice << "원 입니다." << endl;
             total += currentprice;
         }
