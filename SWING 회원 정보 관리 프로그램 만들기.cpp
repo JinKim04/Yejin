@@ -6,17 +6,17 @@ using namespace std;
 class information {
 public:
 	string name;
-	string phonenumber;
+	string number;
 
-	information(string name, string phonenumber) {
+	information(string name, string number) {
 		this->name = name;
-		this->phonenumber = phonenumber;
+		this->number = number;
 	}
 };
 
-bool isMatch(vector<information>& members, string name, string phonenumber) {
-	for (auto& member : members) {
-		if (member.name == name && member.phonenumber == phonenumber) {
+bool Check(vector<information>* members, string name, string number) {
+	for (auto& member : *members) {
+		if ((member.name == name && member.number == number)) {
 			return true;
 		}
 	}
@@ -26,90 +26,97 @@ bool isMatch(vector<information>& members, string name, string phonenumber) {
 int main() {
 	vector<information> members;
 	int choice;
+	string name, number, oldname, oldnumber;
 
 	while (true) {
-		cout << "***** SWING È¸¿ø Á¤º¸ °ü¸® ÇÁ·Î±×·¥ *****" << endl << endl;
-		cout << "1. È¸¿ø°¡ÀÔ" << endl;
-		cout << "2. ·Î±×ÀÎ" << endl;
-		cout << "3. È¸¿ø Á¤º¸ ¼öÁ¤" << endl;
-		cout << "4. Á¾·á" << endl << endl;
-		cout << "¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
+		cout << "***** SWING íšŒì› ì •ë³´ ê´€ë¦¬ í”„ë¡œê·¸ëž¨ *****" << endl << endl;
+		cout << "1. íšŒì›ê°€ìž…" << endl;
+		cout << "2. ë¡œê·¸ì¸" << endl;
+		cout << "3. íšŒì› ì •ë³´ ìˆ˜ì •" << endl;
+		cout << "4. ì¢…ë£Œ" << endl << endl;
+		cout << "ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ";
 		cin >> choice;
 		cout << endl;
 
-
-		if (choice == 1){
-		    cout << "***** È¸¿ø°¡ÀÔÀ» ÁøÇàÇÕ´Ï´Ù *****" << endl << endl;
-	    	string name, phonenumber;
-			cout << "ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä : ";
-		    cin >> name;
-			cout << "ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
-	    	cin >> phonenumber;
-			cout << endl;
-
-        	if (isMatch(members, name, phonenumber)) {
-		    	cout << "ÀÌ¹Ì µî·ÏµÈ Á¤º¸ÀÔ´Ï´Ù" << endl << endl;
-		    	continue;
-	    	}
-
-	    	members.push_back(information(name, phonenumber));
-	    	cout << "È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù" << endl << endl;
-
-		}
-		else if (choice == 2) {
-			cout << "***** ·Î±×ÀÎÀ» ÁøÇàÇÕ´Ï´Ù *****" << endl << endl;
-			string name, phonenumber;
-			cout << "ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä : ";
+		if (choice == 1) {
+			cout << "***** íšŒì›ê°€ìž…ì„ ì§„í–‰í•©ë‹ˆë‹¤ *****" << endl << endl;
+			string name, number;
+			cout << "ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš” : ";
 			cin >> name;
-			cout << "ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ";
-			cin >> phonenumber;
+			cout << "ì „í™”ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ";
+			cin >> number;
 			cout << endl;
 
-			if (isMatch(members, name, phonenumber)) {
-				cout << "·Î±×ÀÎÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù." << endl << endl;
-				cout << "***** SWING " << name << "´ÔÀ» ÀÀ¿øÇÕ´Ï´Ù *****" << endl << endl;
-			}
-			else {
-				cout << "È¸¿ø Á¤º¸°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù." << endl << endl;
-			}
-		}
-		else if (choice == 3) {
-			cout << "***** È¸¿ø Á¤º¸ ¼öÁ¤À» ÁøÇàÇÕ´Ï´Ù *****" << endl << endl;
-			string name, phonenumber, newname, newphonenumber;
-			cout << "ÇöÀç È¸¿ø Á¤º¸" << endl;
-			cout << "ÀÌ¸§ : ";
-			cin >> name; 
-			cout << "ÀüÈ­¹øÈ£ : ";
-			cin >> phonenumber;
-			cout << endl;
-
-			if (!isMatch(members, name, phonenumber)) {
-				cout << "È¸¿ø Á¤º¸°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù." << endl << endl;
+			if (Check(&members, name, number)) {
+				cout << "ì´ë¯¸ ë“±ë¡ëœ ì •ë³´ìž…ë‹ˆë‹¤." << endl;
 				continue;
 			}
 
-			cout << "»õ·Î¿î È¸¿ø Á¤º¸" << endl;
-			cout << "ÀÌ¸§ : ";
-			cin >> newname;
-			cout << "ÀüÈ­¹øÈ£ : ";
-			cin >> newphonenumber; 
+			members.push_back(information(name, number));
+			cout << "íšŒì›ê°€ìž…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤" << endl << endl;
+		}
+
+		else if (choice == 2) {
+			cout << "***** ë¡œê·¸ì¸ì„ ì§„í–‰í•©ë‹ˆë‹¤ *****" << endl << endl;
+			string name, number;
+			cout << "ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš” : ";
+			cin >> name;
+			cout << "ì „í™”ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš” : ";
+			cin >> number;
 			cout << endl;
 
-			for (auto& member : members) {
-				if (member.name == name && member.phonenumber == phonenumber) {
-					member.name = newname;
-					member.phonenumber = newphonenumber;
-					cout << "È¸¿ø Á¤º¸ ¼öÁ¤ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù." << endl << endl;
-					break;
+			if (Check(&members, name, number)) {
+				cout << "ë¡œê·¸ì¸ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤." << endl << endl;
+				cout << "***** SWING " << name << "ë‹˜ì„ ì‘ì›í•©ë‹ˆë‹¤ *****" << endl << endl;
+			}
+			else {
+				cout << "íšŒì› ì •ë³´ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤." << endl << endl;
+			}
+		}
+		else if (choice == 3) {
+			cout << "***** íšŒì› ì •ë³´ ìˆ˜ì •ì„ ì§„í–‰í•©ë‹ˆë‹¤ *****" << endl << endl;
+			string name, number, newname, newnumber;
+			cout << "í˜„ìž¬ íšŒì› ì •ë³´" << endl;
+			cout << "ì´ë¦„ : ";
+			cin >> name;
+			cout << "ì „í™”ë²ˆí˜¸ : ";
+			cin >> number;
+			cout << endl;
+
+			if (!Check(&members, name, number)) {
+				cout << "íšŒì› ì •ë³´ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤." << endl << endl;
+				continue;
+			}
+
+			else {
+				cout << "ìƒˆë¡œìš´ íšŒì› ì •ë³´" << endl;
+				cout << "ì´ë¦„ : ";
+				cin >> newname;
+				cout << "ì „í™”ë²ˆí˜¸ : ";
+				cin >> newnumber;
+				cout << endl;
+
+				if (!Check(&members, newname, newnumber)) {
+					cout << "íšŒì› ì •ë³´ ìˆ˜ì •ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤." << endl;
+					for (auto& member : members) {
+						if (member.name == name && member.number == number) {
+							member.name = newname;
+							member.number = newnumber;
+							break;
+						}
+					}
+				}
+				else {
+					cout << "ì´ë¯¸ ë“±ë¡ëœ ì •ë³´ìž…ë‹ˆë‹¤." << endl;
 				}
 			}
 		}
 		else if (choice == 4) {
-			cout << "ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù." << endl;
+			cout << "í”„ë¡œê·¸ëž¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤." << endl;
 			break;
 		}
 		else {
-			cout << "Á¤È®ÇÑ ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä." << endl;
+			cout << "ì •í™•í•œ ë²ˆí˜¸ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”." << endl;
 		}
 	}
 	return 0;
